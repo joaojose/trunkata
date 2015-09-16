@@ -55,17 +55,17 @@ function trunkata(root, options) {
         // TODO: Deal with punctuation
         // TODO: I feel like this part could (and should) be handled by another module -- i.e. a whilst check loop + punctation intelligence
         var content = node.nodeValue,
-            words = content.split(' ');
+            chars = content.split('');
 
         // In a linear fashion
         // TODO: Binary search the string
-        var j = words.length;
+        var j = chars.length;
         while (j--) {
-          // Join together the words with an ellipsis
-          var checkContent = words.slice(0, j).join(' ') + '…';
+          // Join together the chars with an ellipsis
+          var checkContent = chars.slice(0, j).join('') + '…';
           node.nodeValue = checkContent;
 
-          // If the words fit, announce success and leave
+          // If the chars fit, announce success and leave
           if (root.offsetHeight <= maxHeight) {
             success = true;
             break;
@@ -205,12 +205,13 @@ var computedStyle = function (el, prop, getComputedStyle) {
     // https://github.com/jquery/jquery/blob/1.9-stable/src/css.js#L191-L194
     // https://github.com/jquery/jquery/blob/1.9-stable/src/core.js#L593-L597
     prop.replace(/-(\w)/gi, function (word, letter) {
-      return letter.toUpperCase()
+      return letter.toUpperCase();
     })
-  ]
-}
+  ];
+};
 
 module.exports = computedStyle;
+
 },{}]},{},[1])(1)
 });
 ;
